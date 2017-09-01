@@ -6,4 +6,6 @@ COPY requirements.txt ./
 RUN pip3 install -r requirements.txt
 ENV TF_CPP_MIN_LOG_LEVEL=3
 COPY *.py ./
+RUN python3 ./pre_download.py
+
 CMD ["python3", "./inception.py"]
