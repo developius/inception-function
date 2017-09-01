@@ -45,6 +45,27 @@ def _print_download_progress(count, block_size, total_size):
 ########################################################################
 
 
+def maybe_download(url, download_dir):
+
+    # Filename for saving the file downloaded from the internet.
+    # Use the filename from the URL and add it to the download_dir.
+    filename = url.split('/')[-1]
+    file_path = os.path.join(download_dir, filename)
+
+    # Check if the file already exists.
+    # If it exists then we assume it has also been extracted,
+    # otherwise we need to download and extract it now.
+    if not os.path.exists(file_path):
+        # Check if the download directory exists, otherwise create it.
+        if not os.path.exists(download_dir):
+            os.makedirs(download_dir)
+
+        # Download the file from the internet.
+        file_path, _ = urllib.request.urlretrieve(url=url,
+                                                  filename=file_path,
+                                                  reporthook=_print_download_progress)
+    return file_path
+
 def maybe_download_and_extract(url, download_dir):
     """
     Download and extract the data if it doesn't already exist.
