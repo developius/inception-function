@@ -558,8 +558,7 @@ def transfer_values_cache(cache_path, model, images=None, image_paths=None):
 
 ########################################################################
 # Example usage.
-
-if __name__ == '__main__':
+def invoke(body):
     # print(tf.__version__)
 
     # Download Inception model if not already done.
@@ -568,7 +567,7 @@ if __name__ == '__main__':
     # Load the Inception model so it is ready for classifying images.
     model = Inception()
 
-    image_path = download.maybe_download(sys.argv[1], data_dir)
+    image_path = download.maybe_download(body, data_dir)
     # Path for a jpeg-image that is included in the downloaded data.
     # image_path = os.path.join(data_dir, 'cropped_panda.jpg')
 
@@ -582,5 +581,9 @@ if __name__ == '__main__':
     model.close()
 
     # Transfer Learning is demonstrated in Tutorial #08.
-    print(res)
+    return res
 ########################################################################
+
+if __name__ == '__main__':
+	print(invoke())
+
