@@ -1,13 +1,15 @@
 # inception-function
 
-This is a forked version of the work by [Magnus Erik Hvass Pedersen](https://github.com/Hvass-Labs/TensorFlow-Tutorials) - it has been re-packaged as an OpenFaaS serverless function.
+This is a forked version of the work by [Magnus Erik Hvass Pedersen](https://github.com/Hvass-Labs/TensorFlow-Tutorials) - it has been re-packaged as an [OpenFaaS](https://www.openfaas.com) serverless function.
+
+This means you can call a HTTP endpoint with a URL to an image and get back categorizations through machine learning - fast.
 
 Changes:
 
 * Added Dockerfile
 * Download the "image" JPG to local storage instead of loading from local storage
 
-Deploy on OpenFaaS:
+Deploy on [OpenFaaS](https://www.openfaas.com):
 
 ```
 $ faas-cli deploy --image alexellis/inception --name inception --fprocess "python3 index.py"
